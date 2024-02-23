@@ -11,8 +11,9 @@ public class GridManager : MonoBehaviour
     public GamePiece[] prefabRed;
     public GamePiece[] prefabBlue;
     [SerializeField] private List<TILE> tileList;
-    [SerializeField] private List<GamePiece> redTeam;
-    [SerializeField] private List<GamePiece> blueTeam;
+    [SerializeField] public List<GamePiece> redTeam;
+    [SerializeField] public List<GamePiece> blueTeam;
+    public GameManager1 gameManagerReference;
 
     void Start()
     {
@@ -48,7 +49,10 @@ public class GridManager : MonoBehaviour
             tileList[((i + 1) * 6) - 1].occupiedUnit = blueTeam[i];
             
         }
-        
+
+        gameManagerReference.SetBlueList(blueTeam);
+        gameManagerReference.SetRedList(redTeam);
+
         cam.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
     }
 }

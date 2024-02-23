@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: bcdbfa95e873c1246b6e6d8bc9c3eb33, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,8 +103,9 @@ MonoBehaviour:
   damage: 1
   blueTeam: 0
   redTeam: 1
-  onTurn: 1
+  onTurn: 0
   occupiedTile: {fileID: 0}
+  gameManagerReference: {fileID: 0}
 --- !u!58 &747144870651253542
 CircleCollider2D:
   m_ObjectHideFlags: 0

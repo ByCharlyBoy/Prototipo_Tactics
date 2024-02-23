@@ -10,10 +10,10 @@ public class GamePiece : MonoBehaviour
     public bool redTeam;
     public bool onTurn = false;
     public TILE occupiedTile;
-
+    public GameManager1 gameManagerReference;
     void Start()
     {
-
+        gameManagerReference = FindObjectOfType<GameManager1>();
     }
 
     // Update is called once per frame
@@ -21,10 +21,22 @@ public class GamePiece : MonoBehaviour
     {
         if (health <= 0)
         {
+            if(blueTeam == true)
+            {
+                gameManagerReference.blueFichas -= 1;
+            }
+            else if(redTeam == true)
+            {
+                gameManagerReference.redFichas -= 1;
+            }
             Destroy(gameObject);
         }
     }
+    //public void RemoveElement()
+    //{
+    //    int index = ;
 
+    //}
     public void OnCollisionEnter2D(Collision2D collision)
     {
         var gamepiece = collision.gameObject.GetComponent<GamePiece>();

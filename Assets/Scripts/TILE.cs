@@ -9,9 +9,13 @@ public class TILE : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject highlight;
     [SerializeField] private UnitMovement unitMovement;
-
     public GamePiece occupiedUnit;
+    public GameManager1 gameManagerReference;
 
+    void Start()
+    {
+        gameManagerReference = FindObjectOfType<GameManager1>();
+    }
     public void Init(bool isOffset)
     {
         spriteRenderer.color = isOffset ? offsetColor : baseColor;
@@ -72,6 +76,7 @@ public class TILE : MonoBehaviour
                 && occupiedUnit.tag == "RedTeam/Circle")
             {
                 print(unit.name + " se comio a " + occupiedUnit.name);
+                gameManagerReference.redFichas -= 1;
                 Destroy(occupiedUnit.gameObject);
                 SetUnit(UnitManager.Instance.selectedUnit);
                 UnitManager.Instance.SetSelectedUnit(null);
@@ -90,6 +95,7 @@ public class TILE : MonoBehaviour
                 && occupiedUnit.tag == "RedTeam/Square")
             {
                 print(unit.name + " se comio a " + occupiedUnit.name);
+                gameManagerReference.redFichas -= 1;
                 Destroy(occupiedUnit.gameObject);
                 SetUnit(UnitManager.Instance.selectedUnit);
                 UnitManager.Instance.SetSelectedUnit(null);
@@ -108,6 +114,7 @@ public class TILE : MonoBehaviour
                 && occupiedUnit.tag == "RedTeam/Triangle")
             {
                 print(unit.name + " se comio a " + occupiedUnit.name);
+                gameManagerReference.redFichas -= 1;
                 Destroy(occupiedUnit.gameObject);
                 SetUnit(UnitManager.Instance.selectedUnit);
                 UnitManager.Instance.SetSelectedUnit(null);
@@ -127,6 +134,7 @@ public class TILE : MonoBehaviour
                 && occupiedUnit.tag == "BlueTeam/Circle")
             {
                 print(unit.name + " se comio a " + occupiedUnit.name);
+                gameManagerReference.blueFichas -= 1;
                 Destroy(occupiedUnit.gameObject);
                 SetUnit(UnitManager.Instance.selectedUnit);
                 UnitManager.Instance.SetSelectedUnit(null);
@@ -145,6 +153,7 @@ public class TILE : MonoBehaviour
                 && occupiedUnit.tag == "BlueTeam/Square")
             {
                 print(unit.name + " se comio a " + occupiedUnit.name);
+                gameManagerReference.blueFichas -= 1;
                 Destroy(occupiedUnit.gameObject);
                 SetUnit(UnitManager.Instance.selectedUnit);
                 UnitManager.Instance.SetSelectedUnit(null);
@@ -163,6 +172,7 @@ public class TILE : MonoBehaviour
                 && occupiedUnit.tag == "BlueTeam/Triangle")
             {
                 print(unit.name + " se comio a " + occupiedUnit.name);
+                gameManagerReference.blueFichas -= 1;
                 Destroy(occupiedUnit.gameObject);
                 SetUnit(UnitManager.Instance.selectedUnit);
                 UnitManager.Instance.SetSelectedUnit(null);
