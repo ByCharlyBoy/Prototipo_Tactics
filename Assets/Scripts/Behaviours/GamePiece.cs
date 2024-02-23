@@ -25,7 +25,7 @@ public class GamePiece : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         var gamepiece = collision.gameObject.GetComponent<GamePiece>();
         if (onTurn && redTeam && gamepiece.blueTeam || onTurn && blueTeam && gamepiece.redTeam)

@@ -8,6 +8,7 @@ public class TILE : MonoBehaviour
     [SerializeField] private Color baseColor, offsetColor;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject highlight;
+    [SerializeField] private UnitMovement unitMovement;
 
     public GamePiece occupiedUnit;
 
@@ -26,8 +27,14 @@ public class TILE : MonoBehaviour
     }
     void OnMouseDown()
     {
-        if (occupiedUnit != null)
+        if (UnitManager.Instance.selectedUnit != null && occupiedUnit != null)
         {
+            print("entre");
+            UnitDamage(UnitManager.Instance.selectedUnit);
+        }
+        else if (occupiedUnit != null)
+        {
+            
             UnitManager.Instance.SetSelectedUnit((GamePiece)occupiedUnit);
             Debug.Log("Unit Selected: " + occupiedUnit);
         }
@@ -53,5 +60,19 @@ public class TILE : MonoBehaviour
         unit.transform.position = transform.position;
         occupiedUnit = unit;
         unit.occupiedTile = this;
+    }
+
+    public void UnitDamage(GamePiece unit)
+    {
+        if (unit.onTurn && unit.blueTeam
+           || unit.onTurn && unit.redTeam)
+        {
+            if (unit.onTurn && unit.redTeam && unit.tag == "Triangle"
+                && unit.redTeam && occupiedUnit.tag == "Circle")
+            {
+                print(unit.name + " se comio a " + occupiedUnit.name);
+                Destroy(occupiedUnit.gameObject);
+            }
+        }
     }
 }

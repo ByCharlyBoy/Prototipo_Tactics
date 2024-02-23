@@ -5,7 +5,7 @@ using UnityEngine;
 public class UnitMovement : MonoBehaviour
 {
     TILE tile;
-    [SerializeField] GameObject selectedUnit;
+    [SerializeField] public GameObject selectedUnit;
 
     private void Update()
     {

@@ -103,7 +103,8 @@ MonoBehaviour:
   damage: 1
   blueTeam: 1
   redTeam: 0
-  onTurn: 0
+  onTurn: 1
+  occupiedTile: {fileID: 0}
 --- !u!61 &1850004430186742232
 BoxCollider2D:
   m_ObjectHideFlags: 0
