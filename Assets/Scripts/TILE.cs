@@ -31,6 +31,7 @@ public class TILE : MonoBehaviour
         {
             print("entre");
             UnitDamage(UnitManager.Instance.selectedUnit);
+            
         }
         else if (occupiedUnit != null)
         {
@@ -67,12 +68,122 @@ public class TILE : MonoBehaviour
         if (unit.onTurn && unit.blueTeam
            || unit.onTurn && unit.redTeam)
         {
-            if (unit.onTurn && unit.redTeam && unit.tag == "Triangle"
-                && unit.redTeam && occupiedUnit.tag == "Circle")
+            if (unit.onTurn && unit.tag == "BlueTeam/Triangle"
+                && occupiedUnit.tag == "RedTeam/Circle")
             {
                 print(unit.name + " se comio a " + occupiedUnit.name);
                 Destroy(occupiedUnit.gameObject);
+                SetUnit(UnitManager.Instance.selectedUnit);
+                UnitManager.Instance.SetSelectedUnit(null);
             }
+            else if (unit.onTurn && unit.tag == "BlueTeam/Triangle"
+                && occupiedUnit.tag == "RedTeam/Square" 
+                || unit.onTurn && unit.tag == "BlueTeam/Triangle"
+                && occupiedUnit.tag == "RedTeam/Triangle")
+            {
+                print(unit.name + " golpeo " + occupiedUnit.name);
+                occupiedUnit.health -= 1;
+                unit.health -= 1;
+                UnitManager.Instance.SetSelectedUnit(null);
+            }
+            if (unit.onTurn && unit.tag == "BlueTeam/Circle"
+                && occupiedUnit.tag == "RedTeam/Square")
+            {
+                print(unit.name + " se comio a " + occupiedUnit.name);
+                Destroy(occupiedUnit.gameObject);
+                SetUnit(UnitManager.Instance.selectedUnit);
+                UnitManager.Instance.SetSelectedUnit(null);
+            }
+            else if (unit.onTurn && unit.tag == "BlueTeam/Circle"
+                && occupiedUnit.tag == "RedTeam/Circle" 
+                || unit.onTurn && unit.tag == "BlueTeam/Circle"
+                && occupiedUnit.tag == "RedTeam/Triangle")
+            {
+                print(unit.name + " golpeo " + occupiedUnit.name);
+                occupiedUnit.health -= 1;
+                unit.health -= 1;
+                UnitManager.Instance.SetSelectedUnit(null);
+            }
+            if (unit.onTurn && unit.tag == "BlueTeam/Square"
+                && occupiedUnit.tag == "RedTeam/Triangle")
+            {
+                print(unit.name + " se comio a " + occupiedUnit.name);
+                Destroy(occupiedUnit.gameObject);
+                SetUnit(UnitManager.Instance.selectedUnit);
+                UnitManager.Instance.SetSelectedUnit(null);
+            }
+            else if (unit.onTurn && unit.tag == "BlueTeam/Square"
+                && occupiedUnit.tag == "RedTeam/Circle" 
+                || unit.onTurn && unit.tag == "BlueTeam/Square"
+                && occupiedUnit.tag == "RedTeam/Square")
+            {
+                print(unit.name + " golpeo " + occupiedUnit.name);
+                occupiedUnit.health -= 1;
+                unit.health -= 1;
+                UnitManager.Instance.SetSelectedUnit(null);
+            }
+
+            if (unit.onTurn && unit.tag == "RedTeam/Triangle"
+                && occupiedUnit.tag == "BlueTeam/Circle")
+            {
+                print(unit.name + " se comio a " + occupiedUnit.name);
+                Destroy(occupiedUnit.gameObject);
+                SetUnit(UnitManager.Instance.selectedUnit);
+                UnitManager.Instance.SetSelectedUnit(null);
+            }
+            else if (unit.onTurn && unit.tag == "RedTeam/Triangle"
+                && occupiedUnit.tag == "BlueTeam/Square"
+                || unit.onTurn && unit.tag == "RedTeam/Triangle"
+                && occupiedUnit.tag == "BlueTeam/Triangle")
+            {
+                print(unit.name + " golpeo " + occupiedUnit.name);
+                occupiedUnit.health -= 1;
+                unit.health -= 1;
+                UnitManager.Instance.SetSelectedUnit(null);
+            }
+            if (unit.onTurn && unit.tag == "RedTeam/Circle"
+                && occupiedUnit.tag == "BlueTeam/Square")
+            {
+                print(unit.name + " se comio a " + occupiedUnit.name);
+                Destroy(occupiedUnit.gameObject);
+                SetUnit(UnitManager.Instance.selectedUnit);
+                UnitManager.Instance.SetSelectedUnit(null);
+            }
+            else if (unit.onTurn && unit.tag == "RedTeam/Circle"
+                && occupiedUnit.tag == "BlueTeam/Circle"
+                || unit.onTurn && unit.tag == "RedTeam/Circle"
+                && occupiedUnit.tag == "BlueTeam/Triangle")
+            {
+                print(unit.name + " golpeo " + occupiedUnit.name);
+                occupiedUnit.health -= 1;
+                unit.health -= 1;
+                UnitManager.Instance.SetSelectedUnit(null);
+            }
+            if (unit.onTurn && unit.tag == "RedTeam/Square"
+                && occupiedUnit.tag == "BlueTeam/Triangle")
+            {
+                print(unit.name + " se comio a " + occupiedUnit.name);
+                Destroy(occupiedUnit.gameObject);
+                SetUnit(UnitManager.Instance.selectedUnit);
+                UnitManager.Instance.SetSelectedUnit(null);
+            }
+            else if (unit.onTurn && unit.tag == "RedTeam/Square"
+                && occupiedUnit.tag == "BlueTeam/Circle"
+                || unit.onTurn && unit.tag == "RedTeam/Square"
+                && occupiedUnit.tag == "BlueTeam/Square")
+            {
+                print(unit.name + " golpeo " + occupiedUnit.name);
+                occupiedUnit.health -= 1;
+                unit.health -= 1;
+                UnitManager.Instance.SetSelectedUnit(null);
+            }
+
+            if (unit.blueTeam && occupiedUnit.blueTeam || unit.redTeam && occupiedUnit.redTeam)
+            {
+                UnitManager.Instance.SetSelectedUnit(null);
+            }
+
         }
+        
     }
 }
