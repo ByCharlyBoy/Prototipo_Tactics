@@ -8,18 +8,23 @@ public class GameManager1 : MonoBehaviour
     public enum TurnState { RedTurn, BlueTurn, None }
 
     public TurnState currentState;
-    public float turnTimeLimit = 6.0f;
+    public float turnTimeLimit = 10;
 
     public int redFichas;
     public int blueFichas;
     [HideInInspector]public List<GamePiece> bluePieces;
     [HideInInspector]public List<GamePiece> redPieces;
+    [SerializeField] Text timerText;
+    [SerializeField] GameObject redTurnImage;
+    [SerializeField] GameObject blueTurnImage;
+    [SerializeField] GameObject redVictoryScreen;
+    [SerializeField] GameObject blueVictoryScreen;
 
 
     //private string redTeam;
     //private string blueTeam;
 
-private float _turnTimer;
+    [SerializeField]private float _turnTimer;
 
     GridManager gridReferece;
 
@@ -44,6 +49,7 @@ private float _turnTimer;
         if (currentState == TurnState.None)
         {
             _turnTimer -= Time.deltaTime;
+            timerText.text = _turnTimer.ToString("0");
 
             if (_turnTimer <= 0.0f)
             {
@@ -55,6 +61,7 @@ private float _turnTimer;
         if (currentState != TurnState.None)
         {
             _turnTimer -= Time.deltaTime;
+            timerText.text = _turnTimer.ToString("0");
 
             if (_turnTimer <= 0.0f)
             {
@@ -66,12 +73,14 @@ private float _turnTimer;
 
         if (redFichas <= 0)
         {
-            Debug.Log("Blue Team Win");
+            //Debug.Log("Blue Team Win");
+            blueVictoryScreen.SetActive(true);
             EndGame();
         }
         else if (blueFichas <= 0)
         {
-            Debug.Log("Red Team Win");
+            //Debug.Log("Red Team Win");
+            redVictoryScreen.SetActive(true);
             EndGame();
         }
 
@@ -89,6 +98,9 @@ private float _turnTimer;
         //Desactiva el current player
         if (currentState == TurnState.RedTurn)
         {
+            redTurnImage.SetActive(false);
+            blueTurnImage.SetActive(true);
+            
             if (redPieces[0].onTurn == true)
             {
                 for (int y = 0; y < redPieces.Count; y++)
@@ -101,6 +113,8 @@ private float _turnTimer;
         }
         else
         {
+            blueTurnImage.SetActive(false);
+            redTurnImage.SetActive(true);
             if (bluePieces[0].onTurn == true)
             {
                 for (int y = 0; y < redPieces.Count; y++)
